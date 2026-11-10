@@ -64,6 +64,8 @@ The chronological holdout reduces leakage from future ratings into training. The
 ## Reproducibility and submission
 Configuration is in `configs/config.json`. Run `python -m src.pipeline` from the repository root. The script prints metrics and writes them to `reports/evaluation_results.csv`. Cite the MovieLens dataset and paper in reports and presentations.
 
+The item-item collaborative filtering model is generated during pipeline execution and is not committed because of its large file size. The popularity model is included as a sample trained artifact.
+
 ## Report and execution evidence
 
 The final formatted assignment report is available at `reports/final_report.pdf`.
