@@ -1,0 +1,11 @@
+{
+  "missing_required": 0,
+  "duplicate_user_item": 0,
+  "invalid_rating": 0,
+  "invalid_timestamp": 0,
+  "unknown_user": 0,
+  "unknown_item": 0,
+  "input_rows": 100836,
+  "valid_rows": 100836,
+  "invalid_rows": 0
+}

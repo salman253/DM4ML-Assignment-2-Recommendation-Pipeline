@@ -1,0 +1,11 @@
+{
+  "status": "SUCCESS",
+  "raw_interactions": 100836,
+  "valid_interactions": 100836,
+  "train_rows": 80669,
+  "test_rows": 20167,
+  "models": 2,
+  "dataset": "MovieLens latest-small",
+  "users": 610,
+  "items": 9742
+}

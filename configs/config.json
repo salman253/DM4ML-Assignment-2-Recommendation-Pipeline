@@ -1,0 +1,7 @@
+{
+  "random_seed": 42,
+  "train_fraction": 0.8,
+  "top_k": 5,
+  "dataset": "MovieLens latest-small",
+  "source_url": "https://files.grouplens.org/datasets/movielens/ml-latest-small.zip"
+}

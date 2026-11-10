@@ -1,0 +1,14 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Generated datasets and model artifacts
+data/
+models/
+mlruns/
+
+# Temporary files
+*.log
+.airflow/

@@ -1,0 +1,12 @@
+Entity,Feature,Definition,Availability
+User,user_activity_count,Number of training ratings,Training / inference
+User,user_avg_rating,Mean rating in training data,Training / inference
+User,preferred_category,Most frequently rated MovieLens genre,Training / inference
+User,days_since_last_interaction,Days from latest training timestamp to user's latest rating,Training / inference
+Item,item_popularity,Number of training ratings for the movie,Training / inference
+Item,item_avg_rating,Mean training rating for the movie,Training / inference
+Item,category,Pipe-separated MovieLens genre labels,Training / inference
+Item,item_title,Movie title from movies.csv,Display / inference
+Interaction,rating,Explicit rating on MovieLens 0.5–5.0 scale,Training
+Interaction,timestamp,UTC rating timestamp converted from Unix seconds,Training / inference
+Interaction,event_type,Constant rating event derived from ratings.csv,Training / inference
