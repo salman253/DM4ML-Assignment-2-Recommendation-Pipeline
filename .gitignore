@@ -4,11 +4,10 @@ __pycache__/
 *.pyc
 .DS_Store
 
-# Generated datasets and model artifacts
-data/
-models/
+# Exclude temporary MLflow and Airflow files
 mlruns/
-
-# Temporary files
 *.log
 .airflow/
+
+# Exclude only the oversized collaborative filtering model
+models/item_cf.joblib
