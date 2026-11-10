@@ -16,7 +16,7 @@ Python 3.10 or 3.11 recommended.
 ```bash
 python -m venv .venv
 # Windows:
-.venv\Scripts\activate
+.venv\Scripts\Activate.ps1
 # macOS/Linux:
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -65,4 +65,11 @@ The chronological holdout reduces leakage from future ratings into training. The
 Configuration is in `configs/config.json`. Run `python -m src.pipeline` from the repository root. The script prints metrics and writes them to `reports/evaluation_results.csv`. Cite the MovieLens dataset and paper in reports and presentations.
 
 ## Report and execution evidence
-`reports/generate_report.py` creates `reports/final_report.pdf` after the public-data pipeline runs, embedding the actual validation counts and comparison metrics. The PDF currently in the source ZIP is a clearly marked pre-run template and is replaced automatically after execution. Capture your terminal or Airflow UI after a successful run for the execution screenshot required by your instructor; do not present the earlier synthetic-data screenshot from a previous project version.
+
+The final formatted assignment report is available at `reports/final_report.pdf`.
+
+The report documents the MovieLens dataset, pipeline implementation, validation results, model evaluation, Airflow orchestration and execution evidence.
+
+Airflow DAG and successful task execution screenshots are available in the `screenshots/` directory.
+
+The script `reports/generate_report.py` can be used to regenerate the report after running the pipeline.
