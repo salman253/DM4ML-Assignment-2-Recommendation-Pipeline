@@ -49,3 +49,56 @@ def train_models(train,model_dir,tracking_dir):
     except Exception as e:
         (Path(tracking_dir)/"mlflow_note.txt").write_text("MLflow optional; experiment metadata retained. "+str(e))
     return p,cf
+
+
+def log_evaluation_to_mlflow(results, tracking_dir, model_dir, report_dir):
+    """
+    Log evaluation metrics for each recommender as separate MLflow runs.
+    """
+    from pathlib import Path
+    import mlflow
+
+    tracking_path = Path(tracking_dir).resolve()
+    tracking_path.mkdir(parents=True, exist_ok=True)
+
+    database_path = tracking_path / "mlflow.db"
+    mlflow.set_tracking_uri(
+    	f"sqlite:///{database_path.as_posix()}"
+    )
+
+    mlflow.set_experiment("movielens-recommendation-pipeline")
+
+    metric_columns = [
+        "Precision@5",
+        "Recall@5",
+        "NDCG@5",
+        "Coverage",
+        "Diversity",
+    ]
+
+    for _, row in results.iterrows():
+        model_name = str(row["Model"])
+
+        with mlflow.start_run(run_name=f"{model_name}-evaluation"):
+            mlflow.log_param("model", model_name)
+            mlflow.log_param("k", 5)
+            mlflow.log_param("dataset", "MovieLens latest-small")
+
+            for metric in metric_columns:
+                mlflow.log_metric(metric.replace("@", "_at_"), float(row[metric]))
+
+            model_file = (
+                "popularity.joblib"
+                if model_name == "Popularity"
+                else "item_cf.joblib"
+            )
+
+            artifact_path = Path(model_dir) / model_file
+            if artifact_path.exists():
+                mlflow.log_artifact(str(artifact_path), artifact_path="models")
+
+            evaluation_file = Path(report_dir) / "evaluation_results.csv"
+            if evaluation_file.exists():
+                mlflow.log_artifact(str(evaluation_file), artifact_path="evaluation")
+
+    print("MLflow evaluation metrics logged successfully.")

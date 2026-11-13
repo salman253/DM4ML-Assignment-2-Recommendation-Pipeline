@@ -22,6 +22,14 @@ def run_pipeline():
     build_features(train,users,items,features)
     pop,cf=train_models(train,ROOT/"models",ROOT/"mlruns")
     results=evaluate_models(pop,cf,train,test,items,ROOT/"reports")
+    from src.training.train import log_evaluation_to_mlflow
+
+    log_evaluation_to_mlflow(
+    results,
+    ROOT / "mlruns",
+    ROOT / "models",
+    ROOT / "reports"
+    )
     summary={"status":"SUCCESS","raw_interactions":len(interactions),"valid_interactions":len(clean),
       "train_rows":len(train),"test_rows":len(test),"models":2,"dataset":"MovieLens latest-small","users":int(users.user_id.nunique()),"items":int(items.item_id.nunique())}
     (ROOT/"reports/run_summary.json").write_text(json.dumps(summary,indent=2))
